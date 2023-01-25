@@ -30,8 +30,16 @@ print(first_7)
 exc_last_3 = euro_12.iloc[:, :-3]
 print(exc_last_3)
 
-E_I_R_accuracy = euro_12.iloc[[3, 7, 12], [0,4]]
+t_i = -1
+team_list = []
+for team in euro_12['Team']:
+    t_i += 1
+    if team == 'England' or team == 'Italy' or team=='Russia':
+        team_list.append(t_i)
+
+E_I_R_accuracy = euro_12.iloc[team_list, [0,4]]
 print(E_I_R_accuracy)
+print()
 
 euro_12['Passing Accuracy'] = round(euro_12['Passing Accuracy'].str.replace('%', '').astype(float)/100, 2)
 euro_12 = euro_12.sort_values(by=['Passing Accuracy'], ascending=False)
@@ -46,4 +54,4 @@ def bar_graph():
 
     plt.show()
 
-bar_graph()
+# bar_graph()
